@@ -56,7 +56,9 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-// Seed data
+await app.Services.MigrateAndSeedAsync();
+
+/* Seed data
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -104,7 +106,7 @@ using (var scope = app.Services.CreateScope())
     );
 
     dbContext.SaveChanges();
-}
+}*/
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
